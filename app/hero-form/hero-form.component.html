@@ -1,0 +1,109 @@
+<div class="container">
+    <div [hidden]="submitted">
+      <h1>Driver Bazar</h1>
+      <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name"
+                 [(ngModel)]="model.name" name="name"
+                 #name="ngModel">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" required [(ngModel)]="model.email" name="email"  #email="ngModel">
+        </div>
+        <div class="form-group">
+            <label for="birthdate">Date of Birth</label>
+            <input 
+            max="2020-25-01"
+            type="date" name="birthdate" class="form-control" id="birthdate" [(ngModel)]="model.birthdate"  #birthdate="ngModel">
+        </div>
+
+        <div class="form-group">
+          <label for="gender">Gender</label><br>
+            <input type="radio" [(ngModel)]="model.gender" name="gender" value="male" checked>Male
+            <input type="radio"  [(ngModel)]="model.gender" name="gender" value="female" >Female
+        </div>
+  
+        <div class="form-group">
+          <label for="power">Identity Proof - Pick List Upload image</label>
+          <select class="form-control" id="power"
+                  required
+                  [(ngModel)]="model.power" name="power"
+                  #power="ngModel">
+            <option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+            <label for="address">Address</label>
+            <textarea type="address" class="form-control" id="address" required [(ngModel)]="model.address" name="address"  #email="ngModel"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="text" class="form-control" id="phone"
+                   [(ngModel)]="model.phone" name="phone"
+                   #phone="ngModel">
+        </div>
+        <div class="form-group">
+            <label for="payment">Payment - Optional on registration</label>
+            <select class="form-control" id="payment"
+                    required
+                    [(ngModel)]="model.payment" name="payment"
+                    #payment="ngModel">
+              <option *ngFor="let pay of payments" [value]="pay">{{pay}}</option>
+            </select>
+          </div>
+        <div class="form-group">
+            <label for="language">Laguage Spoken - Optional</label>
+            <input type="text" class="form-control" id="language"
+                   [(ngModel)]="model.language" name="language"
+                   #language="ngModel">
+        </div>
+  
+        <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Submit</button>
+      </form>
+    </div>
+  
+
+    <div [hidden]="!submitted">
+      <h2>You submitted the following:</h2>
+      <div class="row">
+        <div class="col-xs-3">Name</div>
+        <div class="col-xs-9">{{ model.name }}</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-3">Email</div>
+        <div class="col-xs-9">{{ model.email }}</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-3">Date of Birth</div>
+        <div class="col-xs-9">{{ model.birthdate }}</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-3">Gender</div>
+        <div class="col-xs-9">{{ model.gender }}</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-3">Identity Proof</div>
+        <div class="col-xs-9">{{ model.power }}</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-3">Address</div>
+        <div class="col-xs-9">{{ model.address }}</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-3">Phone Number</div>
+        <div class="col-xs-9">{{ model.phone }}</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-3">Payment</div>
+        <div class="col-xs-9">{{ model.payment }}</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-3">Language</div>
+        <div class="col-xs-9">{{ model.language }}</div>
+      </div>
+      <br>
+      <button class="btn btn-primary" (click)="submitted=false">Edit</button>
+    </div>
+  </div>
